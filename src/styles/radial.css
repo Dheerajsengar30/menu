@@ -1,0 +1,179 @@
+.timeline-container {
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit {
+  position: relative;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-core {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #0e0505, #3b82f6, #5105d4);
+  box-shadow: 0 0 40px rgba(94, 88, 88, 0.8);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.node {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  background: #000;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+              0 0 20px rgba(255, 255, 255, 0.15);
+  outline: none;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.5s ease,
+              background 0.5s ease;
+  z-index: 10;
+}
+
+.node.converging {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.node.rearranging {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.node * {
+  box-shadow: none ;
+  background: transparent;
+}
+
+.node .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.node svg {
+  stroke: white;
+  fill: none;
+  background: transparent;
+}
+
+
+.node:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.node:active,
+.node:focus {
+  outline: none;
+}
+
+.label {
+  position: absolute;
+  top: 52px;
+  width: 100px;
+  text-align: center;
+  font-size: 15px;
+  color: rgb(253, 248, 248);
+  margin-top: 0;
+}
+
+.node.expanded {
+  background: white !important;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 
+              0 0 50px rgba(255, 255, 255, 0.6),
+              0 0 75px rgba(255, 255, 255, 0.4),
+              0 0 100px rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transform: translate(-50%, -50%) scale(1.4);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.5s ease, 
+              box-shadow 0.5s ease, 
+              border 0.5s ease;
+  z-index: 100;
+}
+
+.node.expanded .icon svg {
+  stroke: #000;
+  transition: stroke 0.3s ease;
+}
+
+.node.expanded .label {
+  color: #000;
+  font-weight: 600;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+.card {
+  position: absolute;
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  padding: 14px;
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 10px;
+  z-index: 999;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  animation: fadeInUp 0.4s ease 0.1s forwards;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  padding: 3px 8px;
+  border: 1px solid white;
+  border-radius: 999px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.progress {
+  width: 100%;
+  height: 5px;
+  background: #333;
+  margin-top: 8px;
+  border-radius: 999px;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3b82f6, #7c3aed);
+  transition: width 0.3s ease;
+}
