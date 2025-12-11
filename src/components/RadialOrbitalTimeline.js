@@ -95,7 +95,7 @@ export default function RadialOrbitalTimeline({ timelineData }) {
     if (animationPhase === 'converging') {
       const currentPos = calculateNormalPosition(index, total);
   
-      const convergeRadius = 50;
+      const convergeRadius = 90;
       const angle = Math.atan2(currentPos.y, currentPos.x);
       return {
         x: Math.cos(angle) * convergeRadius,
@@ -212,5 +212,6 @@ export default function RadialOrbitalTimeline({ timelineData }) {
     </div>
   );
 }
+
 
 
