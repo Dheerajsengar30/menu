@@ -120,7 +120,7 @@
 }
 
 .node.expanded .label {
-  color: #000;
+  color: #ede3e3;
   font-weight: 600;
   transition: color 0.3s ease, font-weight 0.3s ease;
 }
@@ -177,3 +177,4 @@
   background: linear-gradient(90deg, #3b82f6, #7c3aed);
   transition: width 0.3s ease;
 }
+
