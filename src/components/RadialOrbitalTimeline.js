@@ -7,11 +7,11 @@ export default function RadialOrbitalTimeline({ timelineData }) {
   const [angle, setAngle] = useState(0);
   const [showCard, setShowCard] = useState(false);
   const [positionSwap, setPositionSwap] = useState(null);
-  const [animationPhase, setAnimationPhase] = useState('normal'); // 'normal', 'converging', 'rearranging'
+  const [animationPhase, setAnimationPhase] = useState('normal'); 
 
  // Constant radius for all nodes
 
-  // Top position par kaun sa node hai, yeh calculate karein
+ 
   const getTopNodeIndex = (total, currentAngle) => {
     const topAngle = -90;
     const normalizedAngle = (currentAngle % 360 + 360) % 360;
@@ -36,7 +36,7 @@ export default function RadialOrbitalTimeline({ timelineData }) {
   };
 
   useEffect(() => {
-    // Agar koi node expanded hai, rotation band karein
+
     if (expandedId) {
       return;
     }
@@ -49,24 +49,24 @@ export default function RadialOrbitalTimeline({ timelineData }) {
 
   useEffect(() => {
     if (expandedId && timelineData) {
-      // Capture the current angle when expansion starts
+      
       const currentAngle = angle;
       
-      // Phase 1: Pehle sabhi nodes close aayen
+    
       setAnimationPhase('converging');
       
-      // Phase 2: Nodes close hone ke baad positions change karein
+    
       const rearrangeTimer = setTimeout(() => {
         setAnimationPhase('rearranging');
         const topIndex = getTopNodeIndex(timelineData.length, currentAngle);
         const clickedIndex = timelineData.findIndex(item => item.id === expandedId);
         setPositionSwap({ clickedIndex, topIndex });
-      }, 600); // Converging animation complete hone ke baad
+      }, 600);
       
-      // Phase 3: Card show karein
+
       const cardTimer = setTimeout(() => {
         setShowCard(true);
-      }, 1200); // Rearranging complete hone ke baad
+      }, 1200); 
       
       return () => {
         clearTimeout(rearrangeTimer);
@@ -88,14 +88,14 @@ export default function RadialOrbitalTimeline({ timelineData }) {
     }
   };
 
-  const RADIUS = 265; // Constant radius for all nodes
+  const RADIUS = 265; 
 
   const calculatePosition = (index, total, isExpanded, itemId) => {
-    // Phase 1: Converging - sabhi nodes center ke taraf aayen
+  
     if (animationPhase === 'converging') {
       const currentPos = calculateNormalPosition(index, total);
-      // Center ki taraf move karein (radius kam karein)
-      const convergeRadius = 50; // Close position
+  
+      const convergeRadius = 50;
       const angle = Math.atan2(currentPos.y, currentPos.x);
       return {
         x: Math.cos(angle) * convergeRadius,
@@ -103,13 +103,13 @@ export default function RadialOrbitalTimeline({ timelineData }) {
       };
     }
     
-    // Phase 2 & 3: Rearranging ya final position
+    
     if (isExpanded && animationPhase !== 'converging') {
-      // Expanded node bhi same radius par, top position
+     
       return { x: 0, y: -RADIUS };
     }
     
-    // Normal position ya rearranged position - sabhi same radius par
+ 
     if (positionSwap && animationPhase === 'rearranging') {
       let actualIndex = index;
       if (index === positionSwap.clickedIndex) {
@@ -122,14 +122,14 @@ export default function RadialOrbitalTimeline({ timelineData }) {
       const baseAngle = actualIndex * angleStep;
       const a = (baseAngle + angle) * (Math.PI / 180);
       
-      // Same radius for all nodes
+      
       return { 
         x: Math.cos(a) * RADIUS, 
         y: Math.sin(a) * RADIUS 
       };
     }
     
-    // Normal rotation - same radius
+    
     return calculateNormalPosition(index, total);
   };
 
@@ -138,7 +138,7 @@ export default function RadialOrbitalTimeline({ timelineData }) {
     const baseAngle = index * angleStep;
     const a = (baseAngle + angle) * (Math.PI / 180);
     
-    // Same radius for all nodes
+    
     return { 
       x: Math.cos(a) * RADIUS, 
       y: Math.sin(a) * RADIUS 
@@ -212,3 +212,4 @@ export default function RadialOrbitalTimeline({ timelineData }) {
     </div>
   );
 }
+
