@@ -77,7 +77,7 @@ export default function RadialOrbitalTimeline({ timelineData }) {
       setPositionSwap(null);
       setAnimationPhase('normal');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  
   }, [expandedId, timelineData]);
 
   const handleNodeClick = (itemId, clickedIndex) => {
@@ -212,4 +212,5 @@ export default function RadialOrbitalTimeline({ timelineData }) {
     </div>
   );
 }
+
 
